@@ -23,14 +23,20 @@ Sistema de controle de consultas de neonatos do Hospital e Maternidade Madalena 
 
 ## Instalação
 
-1. Clone o repositório
-2. Execute o servidor:
+1. Clone o repositório:
+```bash
+git clone https://github.com/joaofilhosm/controle-neonatos.git
+cd controle-neonatos
+```
 
+2. Execute o servidor:
 ```bash
 python server.py
 ```
 
 3. Acesse: http://localhost:5789
+
+**Nota:** O banco de dados SQLite é criado automaticamente na pasta `database/` na primeira execução, importando os dados dos arquivos CSV.
 
 ## Tecnologias
 
