@@ -1,7 +1,5 @@
-# Database
-database/*.db
-database/*.db-shm
-database/*.db-wal
+# Database (now included)
+# database/*.db
 
 # Python
 __pycache__/
