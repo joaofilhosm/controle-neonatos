@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Neonatos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Controle de Neonatos</h1>
+            <p>Hospital e Maternidade Madalena Nunes - Apenas 1a internacao por RN</p>
+
+            <div class="dashboard">
+                <div class="card total">
+                    <h3>Total</h3>
+                    <div class="numero" id="total-geral">-</div>
+                </div>
+                <div class="card concluido">
+                    <h3>Consultados</h3>
+                    <div class="numero" id="total-consultado">-</div>
+                </div>
+                <div class="card pendente">
+                    <h3>Pendentes</h3>
+                    <div class="numero" id="total-pendente">-</div>
+                </div>
+                <div class="card progresso-card">
+                    <h3>Progresso</h3>
+                    <div class="numero" id="progresso-geral">-</div>
+                    <div class="progresso-container">
+                        <div class="progresso-barra" id="barra-geral"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn ativa" onclick="mudarCategoria('pre_termo')">Pre-termo (<span id="count-pre_termo">0</span>)</button>
+            <button class="tab-btn" onclick="mudarCategoria('desconforto_respiratorio')">Desconforto Resp. (<span id="count-desconforto_respiratorio">0</span>)</button>
+            <button class="tab-btn" onclick="mudarCategoria('septicemia')">Septicemia (<span id="count-septicemia">0</span>)</button>
+            <button class="tab-btn" onclick="mudarCategoria('infeccao_perinatal')">Infeccao Perinatal (<span id="count-infeccao_perinatal">0</span>)</button>
+            <button class="tab-btn" onclick="mudarCategoria('outras_condicoes')">Outras Condicoes (<span id="count-outras_condicoes">0</span>)</button>
+            <button class="tab-btn" onclick="mudarCategoria('malformacoes')">Malformacoes (<span id="count-malformacoes">0</span>)</button>
+            <button class="tab-btn" onclick="mudarCategoria('outras_doencas')">Outras Doencas (<span id="count-outras_doencas">0</span>)</button>
+        </nav>
+
+        <main class="conteudo">
+            <div class="filtros">
+                <input type="text" id="busca-nome" placeholder="Buscar por nome..." oninput="filtrar()" />
+                <input type="text" id="busca-prontuario" placeholder="Prontuario..." oninput="filtrar()" />
+                <select id="filtro-status" onchange="filtrar()">
+                    <option value="">Todos os status</option>
+                    <option value="pendente">Pendentes</option>
+                    <option value="consultado">Consultados</option>
+                </select>
+                <button class="btn btn-reset" onclick="resetarFiltros()">Limpar filtros</button>
+            </div>
+
+            <div class="info-resultados" id="info-resultados"></div>
+
+            <div id="conteudo-dados">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Carregando dados...</p>
+                </div>
+            </div>
+
+            <div class="acoes">
+                <button class="btn btn-primario" onclick="exportarCSV()">Exportar CSV</button>
+                <button class="btn btn-perigo" onclick="resetarConsultas()">Resetar Consultas</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Controle de Neonatos - Hospital e Maternidade Madalena Nunes</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

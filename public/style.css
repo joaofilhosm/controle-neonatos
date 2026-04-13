@@ -1,0 +1,445 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #666;
+    font-size: 0.95em;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.card.total { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.card.concluido { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.card.pendente { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+.card h3 {
+    font-size: 0.85em;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.card .numero {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.progresso-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.progresso-container {
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progresso-barra {
+    height: 100%;
+    background: white;
+    transition: width 0.3s;
+}
+
+/* Tabs de categorias */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 14px 24px;
+    border: none;
+    background: rgba(255,255,255,0.3);
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    background: rgba(255,255,255,0.5);
+    transform: translateY(-2px);
+}
+
+.tab-btn.ativa {
+    background: white;
+    color: #667eea;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Conteudo principal */
+.conteudo {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+/* Filtros */
+.filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filtros input,
+.filtros select {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.9em;
+    transition: border-color 0.3s;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+#busca-nome { flex: 1; min-width: 200px; }
+#busca-prontuario { width: 150px; }
+#filtro-status { min-width: 150px; }
+
+/* Info resultados */
+.info-resultados {
+    padding: 12px 16px;
+    background: #e7f3ff;
+    border-radius: 8px;
+    color: #004085;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.info-resultados:empty {
+    display: none;
+}
+
+/* Botoes */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-reset {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-primario {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-perigo {
+    background: #dc3545;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f0f0f0;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Estrutura Ano -> Mes -> Container */
+.grupo-ano {
+    margin-bottom: 35px;
+    border: 2px solid #667eea;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.ano-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 18px 25px;
+    font-size: 1.3em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ano-stats {
+    font-size: 0.7em;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* Meses */
+.grupo-mes {
+    margin: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.mes-header {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 12px 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.mes-header:hover {
+    opacity: 0.95;
+}
+
+.mes-stats {
+    font-size: 0.85em;
+    background: rgba(255,255,255,0.25);
+    padding: 4px 12px;
+    border-radius: 15px;
+}
+
+.mes-content {
+    display: none;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.mes-content.visivel {
+    display: block;
+}
+
+/* Container de pacientes do mes */
+.container-pacientes {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* Tabela de pacientes */
+.tabela-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-pacientes th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 14px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+}
+
+.tabela-pacientes td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 0.9em;
+}
+
+.tabela-pacientes tr:hover {
+    background: #f8f9fa;
+}
+
+.tabela-pacientes tr.consultado {
+    background: #d4edda;
+}
+
+.tabela-pacientes tr.consultado td {
+    color: #155724;
+}
+
+/* Checkbox customizado */
+.chk-paciente {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+/* Badges */
+.cid-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #fff3cd;
+    color: #856404;
+    border-radius: 20px;
+    font-size: 0.78em;
+    font-weight: 600;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.status-pendente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-consultado {
+    background: #d4edda;
+    color: #155724;
+}
+
+.permanencia-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #e7f3ff;
+    color: #004085;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* Toggle seta */
+.toggle-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid white;
+    margin-right: 10px;
+    transition: transform 0.3s;
+}
+
+.toggle-arrow.girar {
+    transform: rotate(180deg);
+}
+
+/* Acoes */
+.acoes {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #e8e8e8;
+    flex-wrap: wrap;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    opacity: 0.9;
+    font-size: 0.9em;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        width: 100%;
+    }
+
+    .filtros {
+        flex-direction: column;
+    }
+
+    .filtros input,
+    .filtros select {
+        width: 100%;
+    }
+
+    .tabela-pacientes {
+        font-size: 0.8em;
+    }
+
+    .tabela-pacientes th,
+    .tabela-pacientes td {
+        padding: 8px 5px;
+    }
+}
